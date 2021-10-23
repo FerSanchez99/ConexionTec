@@ -1,3 +1,21 @@
 // Place all the styles related to the Abstracts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.abstract-toggle{
+  display: none;
+}
+
+.social_impact-toggle{
+  display: none;
+}
+
+#normal-row_{
+
+}
+
+.center-vertically{
+  min-height: 100%;
+  /* min-height: 5vh; */
+  display: flex;
+  align-items: center;
+}

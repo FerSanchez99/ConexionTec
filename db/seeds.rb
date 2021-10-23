@@ -105,4 +105,4 @@ User.create(
     userable_type: "Student",
     edition_id: 1,
     institution_id: 1,
-)
+)Admin.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

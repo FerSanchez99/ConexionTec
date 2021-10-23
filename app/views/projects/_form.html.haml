@@ -1,0 +1,53 @@
+= form_with(model: project, local: true) do |form|
+  - if project.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(project.errors.count, "error")
+        prohibited this project from being saved:
+      %ul
+        - project.errors.full_messages.each do |message|
+          %li= message
+  %h1 Detalles del proyecto
+
+  = form.fields_for :project_detail do |project_detail|
+    = render "project_details/form_shared", form: project_detail
+
+
+  = form.label :Es_de_impacto_social?
+  = form.check_box :open_social_impact ,{} , "Yes", "No"
+  .social_impact-toggle
+    %h1 Impacto Social
+    = form.fields_for :social_impact do |social_impact|
+      = render "social_impacts/form_shared", form: social_impact
+
+  = form.label :abrir_abstract?
+  = form.check_box :open_abstract ,{} , "Yes", "No"
+  .abstract-toggle
+    %h1 Abstract
+    = form.fields_for :abstract do |abstract|
+      = render "abstracts/form_shared", form: abstract
+
+  - if !current_user.student?
+    %h1 Datos del estudiante responsable
+    .form-group.col-sm-13.text-left
+      = form.label :student_id, "Nombre", :class => "form-label"
+      = form.select :student_id, student_options(), { :include_blank => true }, :class => "form-control"
+
+  - if !current_user.professor?
+    %h1 Datos del profesor coordinador
+    .form-group.col-sm-13.text-left
+      = form.label :professor_id, "Nombre", :class => "form-label"
+      = form.select :professor_id, professor_options(), { :include_blank => true }, :class => "form-control"
+  .actions
+    = link_to 'Cancelar', projects_path, class: 'btn btn-light'
+    = form.submit :Guardar, class: 'btn btn-primary'
+
+%script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js", :type => "text/javascript"}
+:javascript
+  $("input[type='checkbox']#project_open_abstract").on('change', function(){
+    $('.abstract-toggle').toggle();
+  });
+  $("input[type='checkbox']#project_open_social_impact").on('change', function(){
+    $('.social_impact-toggle').toggle();
+  });
+
