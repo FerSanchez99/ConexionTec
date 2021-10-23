@@ -1,6 +1,4 @@
 class SocialImpact < ApplicationRecord
-<<<<<<< Updated upstream
-=======
 
 	validates :problem, presence: true, uniqueness: false, format: {with: /[
     a-zA-Z0-9_-]{2}/,message: "must contain social problem"}
@@ -11,6 +9,6 @@ class SocialImpact < ApplicationRecord
     validates :responsibility, presence: true, uniqueness: false, format: {with: /[
     a-zA-Z0-9_-]{2}/,message: "must contain problem"}
 
->>>>>>> Stashed changes
+
   belongs_to :project
 end
