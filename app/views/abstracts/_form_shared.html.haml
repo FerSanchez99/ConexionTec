@@ -1,0 +1,131 @@
+.row.align-middle
+  .form-group.col-sm-12.text-left.align-middle
+    = form.label :problem, "Problema", :class => "form-label"
+    = form.text_area :problem, :class => "form-control", :id => "problem-text", :onchange => "manageWordCount('problem-text', 'problem-word-count')", :onkeyup => "update_word_count(this)"
+.row
+  .form-group.col-sm-12.text-left
+    = form.label :methodology, "Metodología", :class => "form-label"
+    = form.text_area :methodology, :class => "form-control", :id => "methodology-text", :onchange => "manageWordCount('methodology-text', 'methodology-word-count')", :onkeyup => "update_methodology_word_count(this)"
+
+.row
+  .form-group.col-sm-12.text-left
+    = form.label :feasibility, "Factibilidad", :class => "form-label"
+    = form.text_area :feasibility, :class => "form-control", :id => "feasibility-text", :onchange => "manageWordCount('feasibility-text', 'feasibility-word-count')", :onkeyup => "update_feasibility_word_count(this)"
+
+.row
+  .form-group.col-sm-12.text-left
+    = form.label :results, "Resultados", :class => "form-label"
+    = form.text_area :results, :class => "form-control", :id => "results-text", :onchange => "manageWordCount('results-text', 'results-word-count')", :onkeyup => "update_results_word_count(this)"
+
+.row
+  .form-group.col-sm-12.text-left
+    = form.label :impact, "Impacto", :class => "form-label"
+    = form.text_area :impact, :class => "form-control", :id => "impact-text", :onchange => "manageWordCount('impact-text', 'impact-word-count')", :onkeyup => "update_impact_word_count(this)"
+
+%h2
+  Total de palabras:
+  %span#count 0
+
+:javascript
+  var sum = 0
+  var count = document.getElementById('count');
+  var input = document.getElementById('problem-text');
+  var input2 = document.getElementById('methodology-text');
+  var input3 = document.getElementById('feasibility-text');
+  var input4 = document.getElementById('results-text');
+  var input5 = document.getElementById('impact-text');
+
+  input.addEventListener('keyup', function(e){
+    wordCounter(e.target.value);
+  });
+  input2.addEventListener('keyup', function(e){
+    wordCounter(e.target.value);
+  });
+  input3.addEventListener('keyup', function(e){
+    wordCounter(e.target.value);
+  });
+  input4.addEventListener('keyup', function(e){
+    wordCounter(e.target.value);
+  });
+  input5.addEventListener('keyup', function(e){
+    wordCounter(e.target.value);
+  });
+
+  function wordCounter(text) {
+    var text = input.value + input2.value + input3.value + input4.value + input5.value;
+    var wordCount = 0;
+    for (var i = 0; i <= text.length; i++) {
+      if (text.charAt(i) == ' ') {
+        wordCount++;
+      }
+    }
+    if(input.value.length > 0){
+      wordCount++;
+    }
+    if(input2.value.length > 0){
+      wordCount++;
+    }
+    if(input3.value.length > 0){
+      wordCount++;
+    }
+    if(input4.value.length > 0){
+      wordCount++;
+    }
+    if(input5.value.length > 0){
+      wordCount++;
+    }
+    count.innerText = wordCount;
+  }
+
+-# .row.align-middle
+-#   .form-group.col-sm-10.text-left.align-middle
+-#     = form.label :problem, "Problema", :class => "form-label"
+-#     = form.text_area :problem, :class => "form-control", :id => "problem-text", :onchange => "manageWordCount('problem-text', 'problem-word-count')", :onkeyup => "update_word_count(this);"
+-#   .col-sm-2.center-vertically
+-#     = text_field_tag :problem_word_count, "", class: 'form-control', :id => "problem-word-count"
+-# .row
+-#   .form-group.col-sm-10.text-left
+-#     = form.label :methodology, "Metodología", :class => "form-label"
+-#     = form.text_area :methodology, :class => "form-control", :id => "methodology-text", :onchange => "manageWordCount('methodology-text', 'methodology-word-count')", :onkeyup => "update_methodology_word_count(this);"
+-#   .col-sm-2.center-vertically
+-#     = text_field_tag :methodology_word_count, "", class: 'form-control', :id => "methodology-word-count"
+-# .row
+-#   .form-group.col-sm-10.text-left
+-#     = form.label :feasibility, "Factibilidad", :class => "form-label"
+-#     = form.text_area :feasibility, :class => "form-control", :id => "feasibility-text", :onchange => "manageWordCount('feasibility-text', 'feasibility-word-count')", :onkeyup => "update_feasibility_word_count(this);"
+-#   .col-sm-2.center-vertically
+-#     = text_field_tag :feasibility_word_count, "", class: 'form-control', :id => "feasibility-word-count"
+-# .row
+-#   .form-group.col-sm-10.text-left
+-#     = form.label :results, "Resultados", :class => "form-label"
+-#     = form.text_area :results, :class => "form-control", :id => "results-text", :onchange => "manageWordCount('results-text', 'results-word-count')", :onkeyup => "update_results_word_count(this);"
+-#   .col-sm-2.center-vertically
+-#     = text_field_tag :results_word_count, "", class: 'form-control', :id => "results-word-count"
+-# .row
+-#   .form-group.col-sm-10.text-left
+-#     = form.label :impact, "Impacto", :class => "form-label"
+-#     = form.text_area :impact, :class => "form-control", :id => "impact-text", :onchange => "manageWordCount('impact-text', 'impact-word-count')", :onkeyup => "update_impact_word_count(this);"
+-#   .col-sm-2.center-vertically
+-#     = text_field_tag :impact_word_count, "", class: 'form-control', :id => "impact-word-count"
+
+-# :javascript
+-#   function update_word_count(object) {
+-#     words = object.value.match(/\S+/g).length.toString();
+-#     $('#problem-word-count').innerHTML = words;
+-#   }
+-#   function update_methodology_word_count(object) {
+-#     words = object.value.match(/\S+/g).length.toString();
+-#     $('#methodology-word-count').innerHTML = words;
+-#   }
+-#   function update_feasibility_word_count(object) {
+-#     words = object.value.match(/\S+/g).length.toString();
+-#     $('#feasibility-word-count').innerHTML = words;
+-#   }
+-#   function update_results_word_count(object) {
+-#     words = object.value.match(/\S+/g).length.toString();
+-#     $('#results-word-count').innerHTML = words;
+-#   }
+-#   function update_impact_word_count(object) {
+-#     words = object.value.match(/\S+/g).length.toString();
+-#     $('#impact-word-count').innerHTML = words;
+-#   }

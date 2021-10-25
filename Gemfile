@@ -25,7 +25,13 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'kaminari'
 gem 'cocoon'
 gem 'figaro'
-
+gem 'haml'
+gem 'hamlit'
+gem 'rails-erd', group: :development
+group :development, :test do
+  gem 'railroady'
+end
+gem 'activeadmin'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
