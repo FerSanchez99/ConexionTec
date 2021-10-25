@@ -20,12 +20,10 @@
     = form.fields_for :social_impact do |social_impact|
       = render "social_impacts/form_shared", form: social_impact
 
-  = form.label :abrir_abstract?
-  = form.check_box :open_abstract ,{} , "Yes", "No"
-  .abstract-toggle
-    %h1 Abstract
-    = form.fields_for :abstract do |abstract|
-      = render "abstracts/form_shared", form: abstract
+
+  %h1 Abstract
+  = form.fields_for :abstract do |abstract|
+    = render "abstracts/form_shared", form: abstract
 
   - if !current_user.student?
     %h1 Datos del estudiante responsable
